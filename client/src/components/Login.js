@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios";
-
+// import axios from "axios";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const Login = props => {
   const [credentials, setCredentials] = useState({
@@ -20,8 +20,8 @@ const Login = props => {
 
   const handleLogin = e => {
     e.preventDefault();
-    axios
-      .post("http://localhost:5000/api/login", credentials)
+    axiosWithAuth()
+      .post("/login", credentials)
       .then(res => {
         console.log("this is res in handleLogin: ", res);
         localStorage.setItem("token", res.data.payload);
